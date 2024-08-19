@@ -9,7 +9,7 @@
 
 
 #### Antes de empezar...
-[Sobre este curso - Instalacción de R y RStudio](00 instalacion/instalacion.html)   
+[Sobre este curso - Instalacción de R y RStudio](https://github.com/curso-statsCBA/curso-R/blob/master/00%20instalacion/instalacion.html)
 
 #### Cronograma   
 

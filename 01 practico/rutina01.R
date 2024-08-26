@@ -2,9 +2,9 @@
 # El símbolo # desactiva el espacio a su derecha.
 # Es útil para poner aclaraciones en nuestras rutinas.
 
-# El comando más básico: Asignar crea objetos.
+# Asignar crea objetos.
 # Puede usarse = en su reemplazo o -> para asignar el nombre al final.
-# Para unificar el estilo de todas las rutinas sólo usaré <-
+# Para unificar el estilo de todas las rutinas aquí sólo usaré <-
 n <- 15  
 n   # escribir el nombre de un objeto es "invocarlo"
 
@@ -12,55 +12,50 @@ n   # escribir el nombre de un objeto es "invocarlo"
 n <- 46 + 12  				 
 n
 
-# los caracteres categóricos necesitan ser ingresados con comillas
-di <- "A"
-di
-
 # Obtener ayudas, el símbolo ?
 # si tenemos dudas sobre el funcionamiento de una función
 ? lm
 
 # Si desconocemos el nombre de una función para realizar determinada
-# tarea, puede realizarse una búsqueda con ?? (sólo en los paquetes intalados)
+# tarea, puede realizarse una búsqueda con ?? (sólo en los paquetes instalados)
 ?? "linear models"
 
 # crear vectores. La función concatenar c
+# los caracteres categóricos se ingresan con comillas
 vector <- c(1, 2, 3, 4)
-vector <- c("a", "b", "c", "d")
+vector <- c("a", "b", "c", "d") 
 
 ################################################################################
 
 # vectores de repetición. 
-# esta función tiene dos argumentos, separados por una coma
-# rep(lo_que_queremos_repetir, cuantas veces)
-xx <- rep("A", 50) 
+# esta función argumentos, separados por una coma
+xx <- rep(x = "A", times = 50) 
+xx
+
+# si no se aclaran los argumentos, R asume su valor posicional
+xx <- rep("A", 50)
 xx
 
 # secuencias 
-seq1 <- c(1:50)  # el símbolo : indica desde:hasta
+seq1 <- seq(from = 0, to = 0.99, by = 0.02) # argumentos explícitos
 seq1
-
-seq2 <- seq(from = 0, to = 0.99, by = 0.01) # argumentos explícitos
-seq2
 
 # combinando vectores de a pares: cbind y rbind
 az <- cbind(seq1, xx)
-za <- rbind(c(1:25), rnorm(25))	
-
-# comparar
 az
+
+za <- rbind(c(1:25), rnorm(25))	
 za
 
 # construyendo una matriz: matrix()
-m <- c(1:20)
-matriz1 <- matrix(m, 4, 5) # (vector a usar, filas, columnas) 
+matriz1 <- matrix(c(1:20), 4, 5) # (vector a usar, filas, columnas) 
 matriz1
 
 ################################################################################
 
-## Preparación e ingreso de datos: la función read.table
+## Preparación e ingreso de datos
 
-# la función read.table
+# la función read.table 
 # opción 1 con ruta completa (notar orientación de las barras /)
 # en este caso asumimos que se encuentra en el directorio RD
 datos <- read.table("C:/RD/datos/peces1.txt", header=TRUE)
@@ -68,26 +63,23 @@ datos <- read.table("C:/RD/datos/peces1.txt", header=TRUE)
 # opción 2 seleccionando el directorio en uso previamente desde "Archivo"
 # o con setwd
 setwd("C:/RD/") ## "C:/RD/" es un ejemplo...
-datos <- read.table("peces1.txt", header=TRUE)
+datos <- read.table("peces1.txt", header = TRUE, stringsAsFactors = TRUE)
 
 # opción 3 Abre una ventana de búsqueda 
 # desventaja: requiere que el humano trabaje!
-datos <- read.table(file.choose(), header=TRUE)
+datos <- read.table(file.choose(), header=TRUE, stringsAsFactors = TRUE)
 
 # opción 4 la función read.csv
-datos <- read.csv("C:/RD/peces1.csv", header=TRUE)
+datos <- read.csv("C:/RD/peces1.csv", header=TRUE, stringsAsFactors = TRUE)
 
-# los datos ya están guardados, pero si queremos verlos...
-datos    # no siempre es buena idea, sobre todo si son muchos
-
-# una forma práctica de ver solo las primeras filas es con head 
+# una forma práctica de ver si los datos cargaron como se espera es
+# ver solo las primeras filas es con head() 
+# o echar un vistazo a la estructura de los datos con str() o summary()
 head(datos)
-
-# o echar un vistazo a la estructura de los datos
-# str informa sobre la estructura de cualquier objeto
 str(datos)
+summary(datos)
 
-# Información básica del set de datos
+# otras maneras de tener información básica
 nrow(datos)     # número de filas
 ncol(datos)     # número de columnas
 names(datos)    # nombre de las columnas
@@ -96,38 +88,33 @@ names(datos)    # nombre de las columnas
 
 ## Indexación
 
-# Para seleccionar una columna del marco de datos utilizamos $
-datos$grupo
+# los objetos tienen diferentes dimensiones:
+# 1: vectores
+# 2: matrices y data.frames (filas y columnas)
+# 3: arrays
+# los corchetes sirven para identificar un elemento según su nombre o posición
 
-# los corchetes indican el contenido de un conjunto de datos, 
-# matriz o vector. La coma separa filas de columnas
+A <- c(1, 2, 9, 67, 8)
+A[3] # tercer elemento
 
-#columnas
-datos[, 1]                           
-datos[, "grupo"]
+datos[, 1]          # primer columna                         
+datos[, "grupo"]    # columna llamada grupo
+datos$grupo         # forma corta
 
-# grupos de columnas
-datos[, 1:3]                         
+datos[, 1:3]        # varias columnas                   
 datos[, c("grupo", "largo.a")]
 
-# filas y datos individuales
-datos[2, ]                           
-datos[2, 3]
-datos[-2, 2]
+datos[2, ]          # filas                     
+datos[2, 3]         # elementos
 
-# indexando por una condición
+# indexando lógicamente con condiciones
+datos[-2, 2]        # exclusión de una fila
 datos[datos$largo.a > 15, ]
 datos[datos$largo.a > 15 & datos$grupo == "A", ]
 
-# Indexación de vectores
-vec <- datos$largo.a                 
-vec[1]
-vec[vec > 15]
-
 ################################################################################
 
-## Subdivisión de conjuntos de datos
-
+# Subdivisión de un conjunto de datos
 dat1 <- subset(datos, datos$grupo == "A")
 dat1
 
@@ -167,7 +154,6 @@ head(datos)
 
 ################################################################################
 
-## Funciones estadísticas básicas y de resumen
 # media
 M <- mean(datos$largo.a, na.rm = TRUE)
 M
@@ -191,35 +177,35 @@ CO
 # en cambio, para realizar un test de correlación
 cor.test(datos$largo.a, datos$largo.b, method = "pearson")
 
-# resumen de datos
-summary(datos)
+# funciones que crean resúmenes aplicados a subconjutos son 
+# tapply (de la serie apply) y aggregate, con una estructura más complicada
 
-# una función útil para aplicar una función a un subconjunto de los datos 
-# es aggregate, con una estructura ligeramente más complicada
+SG <- tapply(datos$largo.a, datos$grupo, mean, na.rm = TRUE)
+SG 
 
-MG<-aggregate(datos$largo.a, by=list(datos$grupo), FUN=mean, na.rm=TRUE)
+MG <- aggregate(datos$largo.a, by = list(datos$grupo), FUN = mean, na.rm = T)
 MG
+
 
 ################################################################################
 
-## Indexación, subdivisión y modificación en tidyverse.
 library(dplyr)
 # Subdivisión o *filtrado*
 dat1 <- filter(datos, grupo == "A")
 dat2 <- filter(datos, grupo == "A", largo.b > 100)
 
-# Selección por colunmas
+# Selección por colunmas *select*
 dat3 <- select(datos, grupo, largo.a)
 
 # select tiene funciones de ayuda. Por ejemplo, seleccionar todas las 
 # columnas que comiencen con "larg". Ver ?select para más ejemplos.
 dat4 <- select(datos, starts_with("larg"))
 
-# Modificación de columnas
+# Modificación de columnas *mutate*
 # puede crearse un nuevo set de datos como aquí o modificarse el original
 dat5 <- mutate(datos,
                prop = largo.b / largo.a, # columna nueva
-               log.largo = log(largo.a)) # columna nueva ...
+               log.largo = log(largo.a)) # columna nueva
 
 ################################################################################
 
@@ -240,8 +226,7 @@ M <- mean(subset(datos$largo.a, datos$grupo == "A"))
 M
 
 # Usando la pipa de magrittr %>%
-# Notar como sigue más de cerca la lógica de 
-# un "lenguaje natural"
+# Seguimos mejor la lógica de un "lenguaje natural"
 datos$largo.a %>%
   subset(datos$grupo == "A") %>%
   mean() -> M  # en magrittr los paréntesis que acompañan mean son opcionales
@@ -254,7 +239,6 @@ datos$largo.a |>
 M
 
 # Usando dplyr y pipa de magrittr
-# (mismo resultado usando |>)
 filter(datos, grupo == "A") %>%
   select(largo.a) %>%
   summarize(mean(largo.a)) -> M

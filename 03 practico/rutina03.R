@@ -1,32 +1,50 @@
-##Caso 1. 
-# complete la ruta al directorio en ...
-dat <- read.table(".../moscas.txt", header = TRUE, stringsAsFactors = TRUE)
+## Caso 1. 
+library(car)  
+library(performance)
+
+dat <- read.table("moscas.txt", header = TRUE, stringsAsFactors = TRUE)
 
 plot(dat$torax)
 plot(dat$vida)
 plot(dat$trat,dat$vida)
 plot(dat$torax,dat$vida)
 
-#diferentes sumas de cuadrados
+#diferentes sumas de cuadrados (ejemplo didáctico)
+# BAJO NINGUNA CIRCUSNTANCIA DEBEN PROBARSE DIFERENTES SUMAS DE CUADRADOS
+# NO SON HERRAMIENTAS EXPLORATORIAS, SINO QUE SE ESTABLECEN EN EL DISEÑO
 fit1.a <- lm(vida ~ trat*torax, data = dat)
 fit1.b <- lm(vida ~ torax*trat, data = dat)
-anova(fit1.a) #tipo I
+
+# Tipo 1
+anova(fit1.a) 
 anova(fit1.b)
 
-library(car)              
+# Tipo 2
 Anova(fit1.a, type = "II")
 Anova(fit1.b, type = "II")
+
+# Tipo 3
 Anova(fit1.a, type = "III")
 Anova(fit1.b, type = "III")
 
+# revisando el resultado 
 summary(fit1.a)
+layout(matrix(1:4, 2, 2))
+plot(fit1.a)
+layout(1)
 
-#selección del modelo
+
+# selección del modelo basado en significancia
+fit1 <- lm(vida ~ trat * torax, data = dat)
 fit2 <- lm(vida ~ trat + torax, data = dat)
-Anova(fit2, type = "II")
 fit3 <- lm(vida ~ trat, data =dat)
-Anova(fit3, type = "II")
+fit4 <- lm(vida ~ torax, data =dat)
+fit5 <- lm(vida ~ 1, data =dat)
 
+anova(fit1, fit2, fit3, fit4, fit5) #comparación secuencial
+compare_performance(fit1, fit2, fit3, fit4, fit5) # criterios
+
+# revisando el modelo final
 layout(matrix(1:4, 2, 2))
 plot(fit3)
 layout(1)

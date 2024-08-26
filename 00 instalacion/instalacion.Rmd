@@ -28,12 +28,13 @@ Las rutinas de una investigación científica pueden ser separadas en dos grande
 
 ## Sobre las rutinas de este curso
 
-En este curso las rutinas aparecen incrustadas en la página web y pueden reconocerse por su distinta tipografía y por estar en recuadros. Por comodidad utilizaremos [RStudio](https://www.rstudio.com/) como *interfaz gráfica de usuario* (GUI) para ejecutar la rutinas, pero resaltando siempre su naturaleza de lenguaje, independiente del soporte donde es ejecutado. A partir de 2015 todo el material de este curso está disponibles en forma abierta en el repo https://github.com/santiagombv/cursoR y en la página http://santiagombv.github.io/cursoR/.     
+En este curso las rutinas aparecen incrustadas en la página web y pueden reconocerse por su distinta tipografía y por estar en recuadros. Por comodidad utilizaremos [RStudio](https://www.rstudio.com/) como *interfaz gráfica de usuario* (GUI) para ejecutar la rutinas, pero resaltando siempre su naturaleza de lenguaje, independiente del soporte donde es ejecutado. Todo el material de este curso, incluyendo versiones anteriores en formato virtual, está disponibles en forma abierta en https://santiagombv.github.io/teaching/.  
 
 ## Sobre este curso   
 
-Este curso está orientado al análisis de datos biológicos, particularmente en el ámbito de la ecología y evolución. Por lo tanto, no se dedicará demasiado tiempo a la manipulación y preparación de datos. El objetivo de este curso es brindar las capacidades para realizar una rutina de análisis estadístico, aplicando conocimientos de modelos lineales, manejos de gráficos y programación.   
+Este curso está orientado al análisis de datos biológicos, particularmente en el ámbito de la ecología y evolución. Por lo tanto, utilizaremos bases de datos de tamaño medio, que no requieren procesos de manipulación elaborados. El objetivo de este curso es brindar las capacidades para realizar una rutina de análisis estadístico, aplicando conocimientos de modelos lineales, manejos de gráficos y programación.   
 El contenido teórico de este curso comprende introducción al aprendizaje estadístico supervisado, modelos lineales generales, selección de modelos y regularización, y métodos de remuestreo  (bootstrap y permutaciones). También aborda la construccíon de gráficos a través de los paquetes *graphics*, *lattice* y, fundamentalmente, *ggplot2* y la construcción de funciones.   
+Cada año por medio se dicta un curso que es la continuación de éste, e involucra modelos estadísticos avanzados como lineales generalizados, aditivos, mixtos, métodos de clasificación y de aprendizaje automático no supervisado.   
 
 --- 
 
@@ -42,7 +43,7 @@ El contenido teórico de este curso comprende introducción al aprendizaje estad
 ### Instalación de R
 
 Ingresar a http://cran.r-project.org/   
-En download R for Windows - base, seleccionar la última versión disponible de R (4.3.0 "Already Tomorrow" al momento de actualizar este curso). Guardar el archivo R-4.3.0-win.exe en cualquier parte de la computadora, ejecutarlo y seguir las instrucciones de instalación. 
+En download R for Windows - base, seleccionar la última versión disponible de R (4.4.1 "Puppy Cup" al momento de actualizar este curso). Guardar el archivo R-4.4.1-win.exe en cualquier parte de la computadora, ejecutarlo y seguir las instrucciones de instalación. 
 
 ### Instalación de RStudio
 
@@ -73,7 +74,7 @@ Los paquetes mismos deben actualizarse regularmente, particualrmente junto a los
 update.packages()
 ```
 
-> Para este curso, se requieren los siguientes paquetes que no son descargados de forma automática con la instalación de R, por lo que deberá instalarlos manualmente: *arm*, *car*, *devtools*, *dplyr*, *glmnet*, *GGally*, *ggplot2*, *lattice*, *leaps*, *magrittr*, *MuMIn*, *patchwork*, *rgl*, *rmarkdown*, *sciplot*, *viridis* y todas las dependencias necesarias.  
+> Para este curso, se requieren los siguientes paquetes que no son descargados de forma automática con la instalación de R, por lo que deberá instalarlos manualmente: *arm*, *car*, *caret*, *devtools*, *dplyr*, *emmeans*, *glmnet*, *GGally*, *ggplot2*, *lattice*, *leaps*, *magrittr*, *MuMIn*, *patchwork*, *performance*, *rgl*, *rmarkdown*, *sciplot*, *viridis* y todas las dependencias necesarias.  
 
 
 ### Actualización de R. 
@@ -88,7 +89,7 @@ updateR() #seguir las instrucciones que aparezcan
 ### Actualización de RStudio. 
 Dirigirse a `Help - check for updates`.   
 
-> Se recomienda fuertemente seguir este curso con una *versión actualizada de R y RStudio*. En caso de tener problemas con la actualización, desinstalar todas las versiones anteriores.
+> Se recomienda fuertemente seguir este curso con una *versión actualizada de R y RStudio*. Si tiene una versión de R < 4.0.0 podría tener problemas en ejecutar las rutinas de este curso. En caso de tener problemas con la actualización, desinstalar todas las versiones anteriores.
 
 --- 
 
@@ -128,14 +129,14 @@ Así se ven los paneles principales de RStudio *con una rutina ya abierta*. Cara
 
 Los paquetes de R son colecciones de funciones para un fin determinado, asociadas a su ayuda y, frecuentemente, a bases de datos y demostraciones de uso (*vignettes*).   
 
-La manera más práctica en Ubuntu es desde terminal.
+La manera más práctica y segura en Ubuntu es desde terminal.
 
 ```
 sudo R
 install.packages("nombre_del_paquete")
 ```
 
-> Para este curso, se requieren los siguientes paquetes que no son descargados de forma automática con la instalación de R, por lo que deberá instalarlos manualmente: *arm*, *car*, *devtools*,*dplyr*, *glmnet*, *GGally*, *ggplot2*, *lattice*, *leaps*, *magrittr*, *MuMIn*, *patchwork*, *rgl*, *rmarkdown*, *sciplot*, *viridis* y todas las dependencias necesarias.  
+> Para este curso, se requieren los siguientes paquetes que no son descargados de forma automática con la instalación de R, por lo que deberá instalarlos manualmente: *arm*, *car*, *caret*, *devtools*, *dplyr*, *emmeans*, *glmnet*, *GGally*, *ggplot2*, *lattice*, *leaps*, *magrittr*, *MuMIn*, *patchwork*, *performance*, *rgl*, *rmarkdown*, *sciplot*, *viridis* y todas las dependencias necesarias.  
 
 Los paquetes mismos deben actualizarse regularmente, particualrmente junto a los cambios en las versiones de R. Para esto, ejecute y posteriormente siga las instrucciones.
 
@@ -147,5 +148,5 @@ update.packages()
 
 Al agregar una fuente de software a la computadora, R se actualizará junto a todos los otros programas, automáticamente.   
 
-> Se recomienda fuertemente seguir este curso con una *versión actualizada de R y RStudio*. En caso de tener problemas con la actualización, desinstalar todas las versiones anteriores.
+> Se recomienda fuertemente seguir este curso con una *versión actualizada de R y RStudio*. Si tiene una versión de R < 4.0.0 podría tener problemas en ejecutar las rutinas de este curso. En caso de tener problemas con la actualización, desinstalar todas las versiones anteriores.
 

@@ -404,24 +404,29 @@ investigación.</li>
 pueden reconocerse por su distinta tipografía y por estar en recuadros.
 Por comodidad utilizaremos <a href="https://www.rstudio.com/">RStudio</a> como <em>interfaz gráfica de
 usuario</em> (GUI) para ejecutar la rutinas, pero resaltando siempre su
-naturaleza de lenguaje, independiente del soporte donde es ejecutado. A
-partir de 2015 todo el material de este curso está disponibles en forma
-abierta en el repo <a href="https://github.com/santiagombv/cursoR" class="uri">https://github.com/santiagombv/cursoR</a> y en la página <a href="http://santiagombv.github.io/cursoR/" class="uri">http://santiagombv.github.io/cursoR/</a>.</p>
+naturaleza de lenguaje, independiente del soporte donde es ejecutado.
+Todo el material de este curso, incluyendo versiones anteriores en
+formato virtual, está disponibles en forma abierta en <a href="https://santiagombv.github.io/teaching/" class="uri">https://santiagombv.github.io/teaching/</a>.</p>
 </div>
 <div id="sobre-este-curso" class="section level2">
 <h2>Sobre este curso</h2>
 <p>Este curso está orientado al análisis de datos biológicos,
 particularmente en el ámbito de la ecología y evolución. Por lo tanto,
-no se dedicará demasiado tiempo a la manipulación y preparación de
-datos. El objetivo de este curso es brindar las capacidades para
-realizar una rutina de análisis estadístico, aplicando conocimientos de
-modelos lineales, manejos de gráficos y programación.<br />
+utilizaremos bases de datos de tamaño medio, que no requieren procesos
+de manipulación elaborados. El objetivo de este curso es brindar las
+capacidades para realizar una rutina de análisis estadístico, aplicando
+conocimientos de modelos lineales, manejos de gráficos y
+programación.<br />
 El contenido teórico de este curso comprende introducción al aprendizaje
 estadístico supervisado, modelos lineales generales, selección de
 modelos y regularización, y métodos de remuestreo (bootstrap y
 permutaciones). También aborda la construccíon de gráficos a través de
 los paquetes <em>graphics</em>, <em>lattice</em> y, fundamentalmente,
-<em>ggplot2</em> y la construcción de funciones.</p>
+<em>ggplot2</em> y la construcción de funciones.<br />
+Cada año por medio se dicta un curso que es la continuación de éste, e
+involucra modelos estadísticos avanzados como lineales generalizados,
+aditivos, mixtos, métodos de clasificación y de aprendizaje automático
+no supervisado.</p>
 <hr />
 </div>
 <div id="instalación-de-r-y-de-sus-paquetes-en-windows" class="section level2">
@@ -430,9 +435,9 @@ los paquetes <em>graphics</em>, <em>lattice</em> y, fundamentalmente,
 <h3>Instalación de R</h3>
 <p>Ingresar a <a href="http://cran.r-project.org/" class="uri">http://cran.r-project.org/</a><br />
 En download R for Windows - base, seleccionar la última versión
-disponible de R (4.3.0 “Already Tomorrow” al momento de actualizar este
-curso). Guardar el archivo R-4.3.0-win.exe en cualquier parte de la
-computadora, ejecutarlo y seguir las instrucciones de instalación.</p>
+disponible de R (4.4.1 “Puppy Cup” al momento de actualizar este curso).
+Guardar el archivo R-4.4.1-win.exe en cualquier parte de la computadora,
+ejecutarlo y seguir las instrucciones de instalación.</p>
 </div>
 <div id="instalación-de-rstudio" class="section level3">
 <h3>Instalación de RStudio</h3>
@@ -467,9 +472,10 @@ instrucciones.</p>
 <p>Para este curso, se requieren los siguientes paquetes que no son
 descargados de forma automática con la instalación de R, por lo que
 deberá instalarlos manualmente: <em>arm</em>, <em>car</em>,
-<em>devtools</em>, <em>dplyr</em>, <em>glmnet</em>, <em>GGally</em>,
-<em>ggplot2</em>, <em>lattice</em>, <em>leaps</em>, <em>magrittr</em>,
-<em>MuMIn</em>, <em>patchwork</em>, <em>rgl</em>, <em>rmarkdown</em>,
+<em>caret</em>, <em>devtools</em>, <em>dplyr</em>, <em>emmeans</em>,
+<em>glmnet</em>, <em>GGally</em>, <em>ggplot2</em>, <em>lattice</em>,
+<em>leaps</em>, <em>magrittr</em>, <em>MuMIn</em>, <em>patchwork</em>,
+<em>performance</em>, <em>rgl</em>, <em>rmarkdown</em>,
 <em>sciplot</em>, <em>viridis</em> y todas las dependencias
 necesarias.</p>
 </blockquote>
@@ -487,8 +493,10 @@ updateR() #seguir las instrucciones que aparezcan</code></pre>
 <p>Dirigirse a <code>Help - check for updates</code>.</p>
 <blockquote>
 <p>Se recomienda fuertemente seguir este curso con una <em>versión
-actualizada de R y RStudio</em>. En caso de tener problemas con la
-actualización, desinstalar todas las versiones anteriores.</p>
+actualizada de R y RStudio</em>. Si tiene una versión de R &lt; 4.0.0
+podría tener problemas en ejecutar las rutinas de este curso. En caso de
+tener problemas con la actualización, desinstalar todas las versiones
+anteriores.</p>
 </blockquote>
 <hr />
 </div>
@@ -529,16 +537,17 @@ personalizables.</p>
 <p>Los paquetes de R son colecciones de funciones para un fin
 determinado, asociadas a su ayuda y, frecuentemente, a bases de datos y
 demostraciones de uso (<em>vignettes</em>).</p>
-<p>La manera más práctica en Ubuntu es desde terminal.</p>
+<p>La manera más práctica y segura en Ubuntu es desde terminal.</p>
 <pre><code>sudo R
 install.packages(&quot;nombre_del_paquete&quot;)</code></pre>
 <blockquote>
 <p>Para este curso, se requieren los siguientes paquetes que no son
 descargados de forma automática con la instalación de R, por lo que
 deberá instalarlos manualmente: <em>arm</em>, <em>car</em>,
-<em>devtools</em>,<em>dplyr</em>, <em>glmnet</em>, <em>GGally</em>,
-<em>ggplot2</em>, <em>lattice</em>, <em>leaps</em>, <em>magrittr</em>,
-<em>MuMIn</em>, <em>patchwork</em>, <em>rgl</em>, <em>rmarkdown</em>,
+<em>caret</em>, <em>devtools</em>, <em>dplyr</em>, <em>emmeans</em>,
+<em>glmnet</em>, <em>GGally</em>, <em>ggplot2</em>, <em>lattice</em>,
+<em>leaps</em>, <em>magrittr</em>, <em>MuMIn</em>, <em>patchwork</em>,
+<em>performance</em>, <em>rgl</em>, <em>rmarkdown</em>,
 <em>sciplot</em>, <em>viridis</em> y todas las dependencias
 necesarias.</p>
 </blockquote>
@@ -553,8 +562,10 @@ posteriormente siga las instrucciones.</p>
 junto a todos los otros programas, automáticamente.</p>
 <blockquote>
 <p>Se recomienda fuertemente seguir este curso con una <em>versión
-actualizada de R y RStudio</em>. En caso de tener problemas con la
-actualización, desinstalar todas las versiones anteriores.</p>
+actualizada de R y RStudio</em>. Si tiene una versión de R &lt; 4.0.0
+podría tener problemas en ejecutar las rutinas de este curso. En caso de
+tener problemas con la actualización, desinstalar todas las versiones
+anteriores.</p>
 </blockquote>
 </div>
 </div>

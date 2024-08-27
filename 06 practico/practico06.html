@@ -297,23 +297,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -365,22 +359,20 @@ display: none;
 <p>El paquete lattice ofrece flexibilidades especiales para representar
 interacciones y particularmente datos multivariados. Sus funciones son
 independientes de las funciones gráficas principales y se caracterizan
-por tener una gramática ligeramente distinta.</p>
-<pre class="r"><code>library (lattice)
+por tener una gramática ligeramente distinta. No son tan elegantes, pero
+son muy fáciles de usar, siendo útiles para examinar datos
+rápidamente.</p>
+<pre class="r"><code>library(lattice)
 
-# complete la ruta al directorio en ...
-fum &lt;- read.table(&quot;.../fumadores.txt&quot;, header=T)
+fum &lt;- read.table(&quot;fumadores.txt&quot;, header=T)
 
-# gráficos bivariados
+#gráficos bivariados
 # Notar que ingresar los datos como una fórmula es más eficiente
 xyplot(ca.pulm ~ alt, data = fum)
 xyplot(ca.pulm ~ alt | edad, data = fum)
 xyplot(ca.pulm ~ alt | fuma, data = fum)
 xyplot(ca.pulm ~ alt | fuma*sexo, data = fum)
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum)
-
-# ayuda de la funcion básica xyplot
-?xyplot
 
 # manipular alguna de sus opciones...
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = &quot;altura&quot;, 
@@ -389,12 +381,11 @@ xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = &quot;altura&quot;,
                            space = &quot;bottom&quot;, 
                            points = list(pch = 19, col = c(&quot;red&quot;, &quot;black&quot;))))
 
-# GRÁFICOS DE CAJAS
+# otros gráficos comunes
 bwplot(ca.pulm ~ fuma | sexo, data = fum)
-
-# HISTOGRAMAS Y DIAGRAMAS DE DENSIDAD
 histogram(~ ca.pulm, data = fum)
-densityplot(~ ca.pulm | fuma, data = fum)</code></pre>
+densityplot(~ ca.pulm | fuma, data = fum)
+</code></pre>
 </div>
 <div id="gráficos-del-paquete-ggplot2" class="section level2">
 <h2>Gráficos del paquete <em>ggplot2</em></h2>
@@ -414,12 +405,11 @@ transparencia, tipo de línea, etiquetas de los ejes, etc.<br />
 <li>geoms: objetos geométricos como puntos, barras, líneas, etc. En la
 práctica indica el tipo de gráfico a realizar.</li>
 </ul>
-<pre class="r"><code>## Gráficos del paquete ggplot2
-library(ggplot2)
+<pre class="r"><code>library(ggplot2)
 library(viridis)
+library(patchwork)
 
-# complete la ruta al directorio en ...
-fum &lt;- read.table(&quot;.../fumadores.txt&quot;, header=T)
+fum &lt;- read.table(&quot;fumadores.txt&quot;, header=T)
 
 #utilizando ggplot
 ggplot(data = fum, aes(x = edad, y = ca.pulm)) + geom_point()    
@@ -434,7 +424,7 @@ g2
 # notar el + al final (equivale a una línea continua)
 # notar la diferencia entre colocar variables adentro o afuera de aes()
 g1 &lt;- ggplot(data = fum) +
-  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3) +
+  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3, alpha = 0.4) +
   xlab(&quot;Edad&quot;) +
   ylab(&quot;Capacidad Pulmonar&quot;) +
   theme_bw()
@@ -464,11 +454,11 @@ t1
 
 # diferencia entre mapeos locales y generales
 z1 &lt;- ggplot(data = fum) + 
-  geom_point(mapping = aes(x = edad, y = ca.pulm)) +
+  geom_point(mapping = aes(x = edad, y = ca.pulm, color = sexo)) +
   geom_smooth(mapping = aes(x = edad, y = ca.pulm))
 z1
 
-z2 &lt;- ggplot(data = fum, aes(x = edad, y = ca.pulm)) + 
+z2 &lt;- ggplot(data = fum, aes(x = edad, y = ca.pulm, color = sexo)) + 
   geom_point() +
   geom_smooth()
 z2
@@ -482,8 +472,9 @@ f1
 
 f2 &lt;- ggplot(data = fum) + 
   geom_point(aes(x = edad, y = ca.pulm, color = fuma), size = 3) + 
-  theme_bw() + facet_grid(fuma ~ .) + 
-  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;))
+  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;)) +
+  theme_bw() + 
+  facet_grid(fuma ~ .)
 f2
 
 f3 &lt;- ggplot(data = fum) + 
@@ -504,12 +495,10 @@ h1 &lt;- ggplot(data = fum) +
   geom_histogram(aes(x = ca.pulm), fill=&quot;red&quot;)
 h1
 
-# combinando gráficos
-library(patchwork)
-
+# combinando gráficos (patchwork)
 c3 / b1
 
-c3 + b1
+c3 | b1
 
 c3 / (b1 + h1)
 </code></pre>
@@ -517,25 +506,24 @@ c3 / (b1 + h1)
 <div id="ejercicios" class="section level2">
 <h2>Ejercicios</h2>
 <ol style="list-style-type: decimal">
-<li><p>Utilizar los datos de turnera.txt y realizar una regresión donde
-el número de granos de polen recibidos en el estigma (polen.tot) se
-encuentre en respuesta al morfo (variable cualitativa: 0 = brevistilado,
-1 = longistilado) y del área del pétalo (area.pet). Representar los
-resultados utilizando lattice (sin líneas de regresión) y ggplot2 (con
-líneas de regresión).</p></li>
-<li><p>Utilizando los mismos datos realice gráficos de densidad para la
-altura del estambre (alt.estambre) según el morfo, utilizando
-<em>lattice</em> y <em>ggplot2</em>.</p></li>
-<li><p>¿Tiene datos disponibles? Es el momento de usarlos. Visite la
+<li>¿Tiene datos disponibles? Es el momento de usarlos. Visite la
 sección de <em>ggplot2</em> en <a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a> e
-intente reproducir alguno de ellos utilizando sus propios
-datos.</p></li>
+intente reproducir alguno de ellos utilizando sus propios datos.</li>
 </ol>
 </div>
 <div id="viridis" class="section level2">
 <h2>Viridis</h2>
 <p>En este práctico tambien exploramos las opciones gráficas de
-<em>viridis</em>. Para conocer más revisar <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">acá</a>.</p>
+<em>viridis</em>. Las propiedades de estas escalas de color (inclusivas,
+perceptualmente uniformes, trasladables a escalas de grises) son muy
+recomendables para publicaciones. Para conocer más revisar <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html"><em>viridis</em></a>.</p>
+</div>
+<div id="más-colores" class="section level2">
+<h2>Más colores</h2>
+<p>¿Sabías que hay paletas inspiradas en Los Simpson, en paisajes o en
+las películas de Wes Anderson? Revisá los paquetes <a href="https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html"><em>ggsci</em></a>,
+<a href="https://github.com/karthik/wesanderson"><em>wesanderson</em></a> y
+<a href="https://github.com/CoryMcCartan/wacolors"><em>wacolors</em></a>.</p>
 </div>
 
 

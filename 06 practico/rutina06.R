@@ -1,9 +1,7 @@
 ### Gráficos del paquete lattice
-
 library(lattice)
 
-# complete la ruta al directorio en ...
-fum <- read.table(".../fumadores.txt", header=T)
+fum <- read.table("fumadores.txt", header=T)
 
 #gráficos bivariados
 # Notar que ingresar los datos como una fórmula es más eficiente
@@ -13,9 +11,6 @@ xyplot(ca.pulm ~ alt | fuma, data = fum)
 xyplot(ca.pulm ~ alt | fuma*sexo, data = fum)
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum)
 
-# ayuda de la funcion básica xyplot
-?xyplot
-
 # manipular alguna de sus opciones...
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = "altura", 
        ylab = "capacidad\npulmonar", col = c("red", "black"), pch = 19, 
@@ -23,21 +18,20 @@ xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = "altura",
                            space = "bottom", 
                            points = list(pch = 19, col = c("red", "black"))))
 
-# GRÁFICOS DE CAJAS
+# otros gráficos comunes
 bwplot(ca.pulm ~ fuma | sexo, data = fum)
-
-# HISTOGRAMAS Y DIAGRAMAS DE DENSIDAD
 histogram(~ ca.pulm, data = fum)
 densityplot(~ ca.pulm | fuma, data = fum)
 
 #############################################################
 
 ## Gráficos del paquete ggplot2
+
 library(ggplot2)
 library(viridis)
+library(patchwork)
 
-# complete la ruta al directorio en ...
-fum <- read.table(".../fumadores.txt", header=T)
+fum <- read.table("fumadores.txt", header=T)
 
 #utilizando ggplot
 ggplot(data = fum, aes(x = edad, y = ca.pulm)) + geom_point()    
@@ -52,7 +46,7 @@ g2
 # notar el + al final (equivale a una línea continua)
 # notar la diferencia entre colocar variables adentro o afuera de aes()
 g1 <- ggplot(data = fum) +
-  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3) +
+  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3, alpha = 0.4) +
   xlab("Edad") +
   ylab("Capacidad Pulmonar") +
   theme_bw()
@@ -82,11 +76,11 @@ t1
 
 # diferencia entre mapeos locales y generales
 z1 <- ggplot(data = fum) + 
-  geom_point(mapping = aes(x = edad, y = ca.pulm)) +
+  geom_point(mapping = aes(x = edad, y = ca.pulm, color = sexo)) +
   geom_smooth(mapping = aes(x = edad, y = ca.pulm))
 z1
 
-z2 <- ggplot(data = fum, aes(x = edad, y = ca.pulm)) + 
+z2 <- ggplot(data = fum, aes(x = edad, y = ca.pulm, color = sexo)) + 
   geom_point() +
   geom_smooth()
 z2
@@ -100,8 +94,9 @@ f1
 
 f2 <- ggplot(data = fum) + 
   geom_point(aes(x = edad, y = ca.pulm, color = fuma), size = 3) + 
-  theme_bw() + facet_grid(fuma ~ .) + 
-  scale_color_manual(values = c("red", "blue"))
+  scale_color_manual(values = c("red", "blue")) +
+  theme_bw() + 
+  facet_grid(fuma ~ .)
 f2
 
 f3 <- ggplot(data = fum) + 
@@ -122,12 +117,10 @@ h1 <- ggplot(data = fum) +
   geom_histogram(aes(x = ca.pulm), fill="red")
 h1
 
-# combinando gráficos
-library(patchwork)
-
+# combinando gráficos (patchwork)
 c3 / b1
 
-c3 + b1
+c3 | b1
 
 c3 / (b1 + h1)
 

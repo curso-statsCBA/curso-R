@@ -9,24 +9,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Gráficos del paquete *lattice*
 
-El paquete lattice ofrece flexibilidades especiales para representar interacciones y particularmente datos multivariados. Sus funciones son independientes de las funciones gráficas principales y se caracterizan por tener una gramática ligeramente distinta.   
+El paquete lattice ofrece flexibilidades especiales para representar interacciones y particularmente datos multivariados. Sus funciones son independientes de las funciones gráficas principales y se caracterizan por tener una gramática ligeramente distinta. No son tan elegantes, pero son muy fáciles de usar, siendo útiles para examinar datos rápidamente.   
 
 ```R
-library (lattice)
+library(lattice)
 
-# complete la ruta al directorio en ...
-fum <- read.table(".../fumadores.txt", header=T)
+fum <- read.table("fumadores.txt", header=T)
 
-# gráficos bivariados
+#gráficos bivariados
 # Notar que ingresar los datos como una fórmula es más eficiente
 xyplot(ca.pulm ~ alt, data = fum)
 xyplot(ca.pulm ~ alt | edad, data = fum)
 xyplot(ca.pulm ~ alt | fuma, data = fum)
 xyplot(ca.pulm ~ alt | fuma*sexo, data = fum)
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum)
-
-# ayuda de la funcion básica xyplot
-?xyplot
 
 # manipular alguna de sus opciones...
 xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = "altura", 
@@ -35,12 +31,11 @@ xyplot(ca.pulm ~ alt, groups = fuma, data = fum, xlab = "altura",
                            space = "bottom", 
                            points = list(pch = 19, col = c("red", "black"))))
 
-# GRÁFICOS DE CAJAS
+# otros gráficos comunes
 bwplot(ca.pulm ~ fuma | sexo, data = fum)
-
-# HISTOGRAMAS Y DIAGRAMAS DE DENSIDAD
 histogram(~ ca.pulm, data = fum)
 densityplot(~ ca.pulm | fuma, data = fum)
+
 ```
 
 ## Gráficos del paquete *ggplot2*
@@ -53,12 +48,11 @@ Un gráfico de *ggplot2* debe contar de al menos estos tres elementos:
 * geoms: objetos geométricos como puntos, barras, líneas, etc. En la práctica indica el tipo de gráfico a realizar.  
 
 ```R
-## Gráficos del paquete ggplot2
 library(ggplot2)
 library(viridis)
+library(patchwork)
 
-# complete la ruta al directorio en ...
-fum <- read.table(".../fumadores.txt", header=T)
+fum <- read.table("fumadores.txt", header=T)
 
 #utilizando ggplot
 ggplot(data = fum, aes(x = edad, y = ca.pulm)) + geom_point()    
@@ -73,7 +67,7 @@ g2
 # notar el + al final (equivale a una línea continua)
 # notar la diferencia entre colocar variables adentro o afuera de aes()
 g1 <- ggplot(data = fum) +
-  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3) +
+  geom_point(aes(x = edad, y = ca.pulm, shape = sexo), size = 3, alpha = 0.4) +
   xlab("Edad") +
   ylab("Capacidad Pulmonar") +
   theme_bw()
@@ -103,11 +97,11 @@ t1
 
 # diferencia entre mapeos locales y generales
 z1 <- ggplot(data = fum) + 
-  geom_point(mapping = aes(x = edad, y = ca.pulm)) +
+  geom_point(mapping = aes(x = edad, y = ca.pulm, color = sexo)) +
   geom_smooth(mapping = aes(x = edad, y = ca.pulm))
 z1
 
-z2 <- ggplot(data = fum, aes(x = edad, y = ca.pulm)) + 
+z2 <- ggplot(data = fum, aes(x = edad, y = ca.pulm, color = sexo)) + 
   geom_point() +
   geom_smooth()
 z2
@@ -121,8 +115,9 @@ f1
 
 f2 <- ggplot(data = fum) + 
   geom_point(aes(x = edad, y = ca.pulm, color = fuma), size = 3) + 
-  theme_bw() + facet_grid(fuma ~ .) + 
-  scale_color_manual(values = c("red", "blue"))
+  scale_color_manual(values = c("red", "blue")) +
+  theme_bw() + 
+  facet_grid(fuma ~ .)
 f2
 
 f3 <- ggplot(data = fum) + 
@@ -143,12 +138,10 @@ h1 <- ggplot(data = fum) +
   geom_histogram(aes(x = ca.pulm), fill="red")
 h1
 
-# combinando gráficos
-library(patchwork)
-
+# combinando gráficos (patchwork)
 c3 / b1
 
-c3 + b1
+c3 | b1
 
 c3 / (b1 + h1)
 
@@ -156,12 +149,12 @@ c3 / (b1 + h1)
 
 ## Ejercicios
 
-1. Utilizar los datos de turnera.txt y realizar una regresión donde el número de granos de polen recibidos en el estigma (polen.tot) se encuentre en respuesta al morfo (variable cualitativa: 0 = brevistilado, 1 = longistilado) y del área del pétalo (area.pet). Representar los resultados utilizando lattice (sin líneas de regresión) y ggplot2 (con líneas de regresión).  
-
-2. Utilizando los mismos datos realice gráficos de densidad para la altura del estambre (alt.estambre) según el morfo, utilizando *lattice* y *ggplot2*.  
-
-3. ¿Tiene datos disponibles? Es el momento de usarlos. Visite la sección de *ggplot2* en [The R Graph Gallery](https://www.r-graph-gallery.com/) e intente reproducir alguno de ellos utilizando sus propios datos.   
+1. ¿Tiene datos disponibles? Es el momento de usarlos. Visite la sección de *ggplot2* en [The R Graph Gallery](https://www.r-graph-gallery.com/) e intente reproducir alguno de ellos utilizando sus propios datos.   
 
 ## Viridis  
 
-En este práctico tambien exploramos las opciones gráficas de *viridis*. Para conocer más revisar [acá](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html).   
+En este práctico tambien exploramos las opciones gráficas de *viridis*. Las propiedades de estas escalas de color (inclusivas, perceptualmente uniformes, trasladables a escalas de grises) son muy recomendables para publicaciones. Para conocer más revisar  [*viridis*](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html).   
+
+## Más colores   
+
+¿Sabías que hay paletas inspiradas en Los Simpson, en paisajes o en las películas de Wes Anderson? Revisá los paquetes [*ggsci*](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html), [*wesanderson*](https://github.com/karthik/wesanderson) y [*wacolors*](https://github.com/CoryMcCartan/wacolors).

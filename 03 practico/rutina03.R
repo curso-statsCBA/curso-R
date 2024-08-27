@@ -24,8 +24,14 @@ Anova(fit1.a, type = "II")
 Anova(fit1.b, type = "II")
 
 # Tipo 3
+dat$torax_c <- scale(dat$torax, center = T, scale = F)
+dat$trat_c <- dat$trat
+contrasts(dat$trat_c) <- contr.sum
+fit1.c <- lm(vida ~ trat_c*torax_c,  data = dat)
+Anova(fit1.c, type = "III")
+
+# el tipo 3 requiere más manipulación de los datos, comparar con
 Anova(fit1.a, type = "III")
-Anova(fit1.b, type = "III")
 
 # revisando el resultado 
 summary(fit1.a)
@@ -49,3 +55,4 @@ layout(matrix(1:4, 2, 2))
 plot(fit3)
 layout(1)
 
+## END

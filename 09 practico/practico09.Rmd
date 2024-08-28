@@ -12,47 +12,49 @@ knitr::opts_chunk$set(echo = TRUE)
 Se intenta conocer si la cantidad de grasa en la leche de vaca es influida por su raza (Ayrshire, Canadian, Guernsey, Holstein-Fresian o Jersey). Se plantea en primer lugar un modelo lineal general. Ante la violación de los supuestos del modelo se realizará un modelo randomizado construyendo una tabla ad-hoc de pseudo-F.
 
 ```R
-# complete la ruta al directorio en ...
-vacas <- read.table(".../vacas.txt", header = TRUE)
+library(performance)
+library(ggplot2)
+vacas <- read.table("vacas.txt", header = TRUE)
 
 fit <- lm(fat ~ breed, data = vacas)
-summary(fit)
 anova(fit)
-layout(matrix(1:4, 2, 2))
-plot(fit)  #examinar violación de supuestos
-layout(1)
 
-#Guardar las F observadas
+check_model(fit)
+check_heteroscedasticity(fit)
+check_normality(fit)
+
+# Guardar las F observadas
 Fobs <- anova(fit)[1, 4]
 Fobs
 
-#construir una function que repita los pasos del modelo
+# construir una function que repita los pasos del modelo
 rd.aov <- function(Y, X){
-  s.Y <- sample(x = Y, size = length(Y), replace = F)   #"reshuffling"
-  fit <- lm(s.Y ~ X)                   #modelo lineal
-  res <- anova(fit)[1, 4]              #extracción de las F
-  c(res)                               #mostrar: un vector de F
-}
-					
-#Probar la función varias veces (debe dar distinto resultado)
+  s.Y <- sample(x = Y, size = length(Y), replace = F)   # "reshuffling"
+  fit <- lm(s.Y ~ X)                   # modelo lineal
+  res <- anova(fit)[1, 4]              # extracción de las F
+  c(res)                               # mostrar: un vector de F
+}  
+
+# Probar la función varias veces (debe dar distinto resultado)
 rd.aov(Y = vacas$fat, X = vacas$breed)
 rd.aov(Y = vacas$fat, X = vacas$breed)
-#Realizar réplicas para obtener la distribución de pseudo F
+
+# Realizar réplicas para obtener la distribución de pseudo F
 pseudoF <- replicate(1000, rd.aov(Y = vacas$fat, X = vacas$breed))
-PF <- t(pseudoF)	#transposición para que cada F quede en una columna
+PF <- data.frame(pseudoF)	#transposición para que cada F quede en una columna
 
-#histograma para ver los resultados simulados y los observados
-hist(PF)
-abline(v = Fobs, col = "red")
+# histograma para ver los resultados simulados y los observados
+ggplot(data=PF, aes(x = pseudoF)) + 
+  geom_histogram() + 
+  geom_vline(xintercept = Fobs, color = "red")
 
-hist(PF, xlim=c(0, 51))
-abline(v = Fobs, col = "red")
+# valores P
+P.breed <- length(pseudoF[pseudoF >= Fobs]) / length(pseudoF)
+P.breed  
 
-#valores P
-P.breed <- length(PF[PF >= Fobs]) / length(PF)
-P.breed
-#como nuestra simulación llegó hasta mil 
-#no podemos asegurar que sea 0, sino P<0.001
+# como nuestra simulación llegó hasta 1000
+# no podemos asegurar que sea 0, sino que P es al menos <0.001
+
 ```
 
 ## Caso 2: Un Monte Carlo sencillo
@@ -60,37 +62,40 @@ P.breed
 Se intenta probar si la distribución espacial de árboles en un área de 4 km2 se aparta de una distribución aleatoria uniforme.
 
 ```R
-# complete la ruta al directorio en ...
-esp <- read.table(".../espMC.txt", header = TRUE)
-plot(y ~ x, data=esp)
+esp <- read.table("espMC.txt", header = TRUE)
+plot(y ~ x, data=esp, pch = 19, col = "purple4")
 
-#calcular las distancias euclídeas entre las filas de la base de datos
-#como parámetro observado se elige la media  de todas las distancias 
+# calcular las distancias euclídeas entre las filas de la base de datos
+# como parámetro observado se elige la media  de todas las distancias 
+# (¿por qué elijo ese parámetro?)
 
-Dobs<-mean(dist(esp))		#revisar la ayuda de la función dist
+Dobs <- mean(dist(esp))		#revisar la ayuda de la función dist
 Dobs
 
-#Realizamos una simulación de la distribución de los árboles según una #distribución uniforme
-X.azar <- runif(n = nrow(esp), min = 0, max = 2)
+# Realizamos una simulación de la distribución de los árboles según una 
+# distribución uniforme
+X.azar <- runif(n = nrow(esp), min = 0, max = 2)		
 Y.azar <- runif(n = nrow(esp), min = 0, max = 2)
 plot(X.azar, Y.azar)
 Dazar <- mean(dist(cbind(X.azar, Y.azar)))
 Dazar
 
-#Repetimos la simulación 1000 veces y guardamos los resultados
+# Repetimos la simulación 1000 veces y guardamos los resultados
 Ds <- numeric(length(1000))
 for (i in 1:1000) {
-  X.azar <- runif(n=24, min=0, max=2)
+  X.azar <- runif(n=24, min=0, max=2)		
   Y.azar <- runif(n=24, min=0, max=2)
   Ds[i] <- mean(dist(cbind(X.azar, Y.azar)))
 }
 
-#visualizamos los resultados con un histograma
+# visualizamos los resultados con un histograma
 hist(Ds)
 abline(v = Dobs, col = "red")
-#calcular el valor P
+
+# calcular el valor P
 P <- length(Ds[Ds < Dobs]) / length(Ds)
 P
+
 ```
 
 ## Ejercicios
@@ -115,4 +120,4 @@ Hacer este test utilizando los datos de cyclopogon sabiendo que:
 ### Tips
 
 >Existen funciones para realizar el test de Mantel en el paquete *vegan*, puede confirmar su resultado consultándolas). Hay alternativas a este test más recomendables, por ejemplo *protest* en el mismo paquete *vegan*.  
->Para realizar el ejercicio 3 la base de datos debe ser reordenada para agregar una variable de clasificación en masculino y femenino. 
+>Para realizar el ejercicio 3 la base de datos debe ser reordenada para agregar una variable de clasificación (éxito reproductivo masculino y femenino). 

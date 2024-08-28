@@ -297,23 +297,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -529,16 +523,16 @@ med</code></pre>
 </div>
 <div id="ejercicios" class="section level2">
 <h2>Ejercicios</h2>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Construir una función que calcule el error estándar (SE) de la media
 y calcularlo para todas las variables en el archivo s_poly.txt
 (guardándolos en un solo vector).</li>
-</ul>
+</ol>
 <p><span class="math display">\[SE = \frac{s} {\sqrt{n}} \]</span></p>
-<ul>
+<ol start="2" style="list-style-type: decimal">
 <li>Utilizando la siguiente tabla de presencia/ausencia de especies en
 dos sitios.</li>
-</ul>
+</ol>
 <table>
 <colgroup>
 <col width="13%" />
@@ -623,11 +617,11 @@ de presencia/ausencia, según la fórmula</p>
 <p>Donde A y B es el número de especies de los sitios 1 y 2,
 respectivamente, y C es el número de especies compartidas por los sitios
 1 y 2. Probar la eficacia de la función con otro set de datos.</p>
-<ul>
-<li><p>Fulanite solicitó un crédito a 30 años para comprar una vivienda,
-con una tasa fija nominal anual del 5%. Pidió <code>$</code>50000000 al
-banco y acordó un pago mensual fijo de $43840. Calcular cuánto pagará
-Fulanite a lo largo de los años. (Ejercicio tomado del curso
+<ol start="3" style="list-style-type: decimal">
+<li><p>Fulanite solicitó un crédito para comprar una vivienda, con una
+tasa fija nominal anual del 5%. Pidió <code>$</code>50000000 al banco y
+acordó un pago mensual fijo de $258000. Calcular cuánto pagará Fulanite
+hasta que pueda cancelar el crédito. (Ejercicio tomado del curso
 programación en Python UNSAM).</p></li>
 <li><p>Simule una población de 1000 observaciones donde dos variables (X
 e Y) se encuentren relacionadas de forma que <span class="math inline">\(Y = 0.2 - 1.5 X + 0.85 X^2 + \epsilon\)</span>
@@ -638,7 +632,7 @@ población al azar en dos grupos (<em>training</em> y <em>test</em>),
 ajuste un modelo a los datos de <em>training</em> y use el modelo para
 predecir los valores de Y en los datos de <em>test</em>. Calcule la suma
 de cuadrados de los residuos de la predicción.</p></li>
-</ul>
+</ol>
 </div>
 
 

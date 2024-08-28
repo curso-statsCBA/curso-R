@@ -167,11 +167,11 @@ med
 
 ## Ejercicios
 
-* Construir una función que calcule el error estándar (SE) de la media y calcularlo para todas las variables en el archivo s_poly.txt (guardándolos en un solo vector).   
+1. Construir una función que calcule el error estándar (SE) de la media y calcularlo para todas las variables en el archivo s_poly.txt (guardándolos en un solo vector).   
 
 $$SE = \frac{s} {\sqrt{n}} $$   
 
-* Utilizando la siguiente tabla de presencia/ausencia de especies en dos sitios.
+2. Utilizando la siguiente tabla de presencia/ausencia de especies en dos sitios.
 
 Especie | A1  | A2  | A3  | A4  | A5  | A6  | A7  | A8  | A9  | A10 | A11 | A12 | A13 | A14 | A15 |
 ------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -185,6 +185,6 @@ $$Q_{s} = \frac{2C} {A + B}$$
 
 Donde A y B es el número de especies de los sitios 1 y 2, respectivamente, y C es el número de especies compartidas por los sitios 1 y 2. Probar la eficacia de la función con otro set de datos.   
 
-* Fulanite solicitó un crédito a 30 años para comprar una vivienda, con una tasa fija nominal anual del 5%. Pidió `$`50000000 al banco y acordó un pago mensual fijo de $43840. Calcular cuánto pagará Fulanite a lo largo de los años. (Ejercicio tomado del curso programación en Python UNSAM).    
+3. Fulanite solicitó un crédito para comprar una vivienda, con una tasa fija nominal anual del 5%. Pidió `$`50000000 al banco y acordó un pago mensual fijo de $258000. Calcular cuánto pagará Fulanite hasta que pueda cancelar el crédito. (Ejercicio tomado del curso programación en Python UNSAM).    
 
-* Simule una población de 1000 observaciones donde dos variables (X e Y) se encuentren relacionadas de forma que $Y = 0.2 - 1.5 X + 0.85 X^2 + \epsilon$ donde X es una variable de distribución normal con media = 2 y varianza = 0.6 y $\epsilon$ es un error de distribución normal y varianza = 0.7. Luego genere un gráfico, divida la población al azar en dos grupos (*training* y *test*), ajuste un modelo a los datos de *training* y use el modelo para predecir los valores de Y en los datos de *test*. Calcule la suma de cuadrados de los residuos de la predicción.
+4. Simule una población de 1000 observaciones donde dos variables (X e Y) se encuentren relacionadas de forma que $Y = 0.2 - 1.5 X + 0.85 X^2 + \epsilon$ donde X es una variable de distribución normal con media = 2 y varianza = 0.6 y $\epsilon$ es un error de distribución normal y varianza = 0.7. Luego genere un gráfico, divida la población al azar en dos grupos (*training* y *test*), ajuste un modelo a los datos de *training* y use el modelo para predecir los valores de Y en los datos de *test*. Calcule la suma de cuadrados de los residuos de la predicción.

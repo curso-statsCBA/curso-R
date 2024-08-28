@@ -11,6 +11,8 @@
 #### Antes de empezar...
 [Sobre este curso - Instalacción de R y RStudio](https://github.com/curso-statsCBA/curso-R/blob/master/00%20instalacion/instalacion.html)
 
+#### Descarga de todo el material práctico [aquí](https://github.com/curso-statsCBA/curso-R/archive/refs/heads/master.zip)
+
 #### Cronograma   
 
 * Módulo 1. Lunes 2/9/24   

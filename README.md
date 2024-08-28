@@ -14,22 +14,22 @@
 #### Cronograma   
 
 * Módulo 1. Lunes 2/9/24   
-  + Teórico: ¿Por qué R? Contenido del curso. [PRESENTACIÓN](teoricos/teor1.html) 
+  + Teórico: ¿Por qué R? Contenido del curso. 
   + Práctico guiado: Introducción al lenguaje. Ingreso y manipulación de datos. [PÁGINA](01 practico/practico01.html)
   + Trabajo práctico: preparación de datos, ingreso y manipulación.  
   
 * Módulo 2. Lunes 2/9/24   
-  + Teórico: Introducción a modelos lineales. Predicción: datos de entrenamiento y de prueba. [PRESENTACION](teoricos/teor2.html) 
+  + Teórico: Introducción a modelos lineales. Predicción: datos de entrenamiento y de prueba. 
   + Práctico guiado: Modelos lineales simples. [PÁGINA](02 practico/practico02.html) 
   + Trabajo práctico: Ejercicios.   
 
 * Módulo 3. Martes 3/9/24
-  + Teórico: Regresión lineal múltiple e interacciones. [PRESENTACIÓN](teoricos/teor3.html).
+  + Teórico: Regresión lineal múltiple e interacciones. 
   + Práctico guiado: Modelos lineales múltiples I. [PÁGINA](03 practico/practico03.html)   
   + Trabajo práctico: Ejercicios   
 
 * Módulo 4. Martes 3/9/24
-  + Teórico: Colinealidad, selección de modelos y regularización. [PRESENTACIÓN](teoricos/teor4.html)  
+  + Teórico: Colinealidad, selección de modelos y regularización.  
   + Práctico guiado: Modelos lineales múltiples II. [PÁGINA](04 practico/practico04.html)     
   + Trabajo práctico: Ejercicios   
 
@@ -52,12 +52,12 @@
   + Trabajo práctico: Construcción de funciones.   
 
 * Módulo 9. Viernes 6/9/24   
-  + Teórico: Introducción a técnicas de remuestreo. Modelos nulos y randomizaciones. [PRESENTACIÓN](teoricos/teor5.html) 
+  + Teórico: Introducción a técnicas de remuestreo. Modelos nulos y randomizaciones. 
   + Práctico guiado: Función sample y construcción de funciones para modelos nulos y randomizados. [PÁGINA](09 practico/practico09.html) 
   + Trabajo práctico: Ejercicios.   
 
 * Módulo 10. Viernes 6/9/24   
-  + Teórico: Bootstrap. [PRESENTACIÓN](teoricos/teor6.html)   
+  + Teórico: Bootstrap. 
   + Práctico guiado: Construcción de bootstraps. [PÁGINA](10 practico/practico10.html)
   + Trabajo práctico: Ejercicios   
 

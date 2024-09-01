@@ -16,12 +16,12 @@
 #### Cronograma   
 
 * Módulo 1. Lunes 2/9/24   
-  + Teórico: ¿Por qué R? Contenido del curso. 
+  + Teórico: ¿Por qué R? Contenido del curso. [PRESENTACIÓN](teor/teor1.html)
   + Práctico guiado: Introducción al lenguaje. Ingreso y manipulación de datos. [PÁGINA](01 practico/practico01.html)
   + Trabajo práctico: preparación de datos, ingreso y manipulación.  
   
 * Módulo 2. Lunes 2/9/24   
-  + Teórico: Introducción a modelos lineales. Predicción: datos de entrenamiento y de prueba. 
+  + Teórico: Introducción a modelos lineales. Predicción: datos de entrenamiento y de prueba. [PRESENTACIÓN](teor/teor2.html)
   + Práctico guiado: Modelos lineales simples. [PÁGINA](02 practico/practico02.html) 
   + Trabajo práctico: Ejercicios.   
 

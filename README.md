@@ -26,12 +26,12 @@
   + Trabajo práctico: Ejercicios.   
 
 * Módulo 3. Martes 3/9/24
-  + Teórico: Regresión lineal múltiple e interacciones. 
+  + Teórico: Regresión lineal múltiple e interacciones. [PRESENTACIÓN](teor/teor3.html)
   + Práctico guiado: Modelos lineales múltiples I. [PÁGINA](03 practico/practico03.html)   
   + Trabajo práctico: Ejercicios   
 
 * Módulo 4. Martes 3/9/24
-  + Teórico: Colinealidad, selección de modelos y regularización.  
+  + Teórico: Colinealidad, selección de modelos y regularización. [PRESENTACIÓN](teor/teor4.html) 
   + Práctico guiado: Modelos lineales múltiples II. [PÁGINA](04 practico/practico04.html)     
   + Trabajo práctico: Ejercicios   
 

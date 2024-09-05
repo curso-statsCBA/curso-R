@@ -40,7 +40,7 @@ library(performance)
 x11()
 check_model(fit)
 check_normality(fit)
-check_heteroscedasticity(fit)
+check_homogeneity(fit, , method = "auto")
 model_performance(fit)
 
 # validación cruzada
@@ -93,6 +93,8 @@ bartlett.test(resid(fit.spray2)~InsectSprays$spray)
 # diagnósticos con performance
 library(performance)
 check_model(fit.spray2)
+check_normality(fit.spray2)
+check_homogeneity(fit.spray2, method = "bartlett")
 
 # Test de Tukey
 # notar que trabaja sobre un objeto aov, no sobre un objeto lm

@@ -47,19 +47,18 @@
 * Módulo 7. Jueves 5/9/24   
   + Práctico guiado: Introducción a R Markdown. [PÁGINA](07 practico/practico07.html) 
   + Trabajo práctico: Ejercicios.    
-  + Encuentro 05/09/2023.
   
 * Módulo 8. Jueves 5/9/24   
   + Práctico guiado: Introducción a la programación en R. [PÁGINA](08 practico/practico08.html) 
   + Trabajo práctico: Construcción de funciones.   
 
 * Módulo 9. Viernes 6/9/24   
-  + Teórico: Introducción a técnicas de remuestreo. Modelos nulos y randomizaciones. 
+  + Teórico: Introducción a técnicas de remuestreo. Modelos nulos y randomizaciones. [PRESENTACIÓN](teor/teor5.html)   
   + Práctico guiado: Función sample y construcción de funciones para modelos nulos y randomizados. [PÁGINA](09 practico/practico09.html) 
   + Trabajo práctico: Ejercicios.   
 
 * Módulo 10. Viernes 6/9/24   
-  + Teórico: Bootstrap. 
+  + Teórico: Bootstrap. [PRESENTACIÓN](teor/teor6.html)    
   + Práctico guiado: Construcción de bootstraps. [PÁGINA](10 practico/practico10.html)
   + Trabajo práctico: Ejercicios   
 

@@ -1,4 +1,4 @@
-![fig1](/images/cactus.png)
+![fig1](/images/c2024.jpeg)
 
 ### INTRODUCCIÓN AL LENGUAJE R. MODELOS LINEALES Y FUNDAMENTOS DE PROGRAMACIÓN
 

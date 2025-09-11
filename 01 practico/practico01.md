@@ -1,0 +1,439 @@
+Práctico 1. Introducción al Lenguaje R
+================
+
+## Creación de objetos
+
+R es un lenguaje orientado a objetos: cada comando crea un objeto que
+debe ser “nombrado” para que permanezca en la memoria utilizando una
+`<-` y su nombre debe ser “invocado” para que aparezca en pantalla. A
+pesar de ser un lenguaje de programación, R es comparativamente simple e
+intuitivo.
+
+### Objetos comunes en R
+
+| objeto         | descripción                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **data.frame** | Objeto que contiene datos. Habitualmente se crea al importar datos externos, aunque pueden ser creados dentro del mismo R. Consiste en una serie de variables (**vectors**) de igual longitud y que pueden ser del mismo tipo o no.                                                                                                                                                                                                                                                                                                                               |
+| **vectors**    | Colección de datos del mismo tipo (números, letras, etc.) que puede ser creado dentro de R o importado como una columna de un **data.frame**. Existen muchos tipos de vectores, entre ellos: **numeric** consiste de números reales; **integer** consiste de números enteros; **character** contiene letras, nombres, etc. (notar que cada elemento se encuentra entre comillas, por ej. “A1”); **factor** sirve para representar variables categóricas, porta información sobre los niveles del factor (*levels*) y sobre si estos niveles siguen un orden o no. |
+| **matrix**     | Matriz formada por la unión de vectores de un mismo tipo y largo, por un solo vector que es partido en columnas y filas o (más habitualmente) producto de ciertas funciones, por ejemplo **cor**, que construye matrices de correlación.                                                                                                                                                                                                                                                                                                                          |
+| **list**       | Objeto que compuesto de objetos de distinto tipo y largo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **tibble**     | Objeto propio de los paquetes de tidyverse, similar en sus funciones a un **data.frame** pero simplificado para evitar errores comunes. Más información en <https://tibble.tidyverse.org/articles/tibble.html>                                                                                                                                                                                                                                                                                                                                                    |
+
+ 
+
+## Algunas ayudas básicas
+
+  - El símbolo **\>** o *prompt* que aparece en la consola indica que
+    esta se encuentra lista para recibir una orden. No está incluído en
+    las rutinas para facilirat el copiar y pegar. Cuando **\>** cambia a
+    **+** indica que se encuentra esperando a finalización de una orden
+    (por ejemplo si se ha abierto un paréntesis pero no se ha cerrado).
+    Si no se sabe a qué orden se refiere, se puede salir del error con
+    la tecla ESC (seleccionando la consola).  
+  - En RStudio las dos ventanas principales contienen la rutina (con el
+    archivo sobre el cual estamos trabajando) y la consola de R.
+    Recomendamos **SIEMPRE** trabajar sobre la rutina.  
+  - Para cálculos muy complejos, la consola puede quedar inutilizada por
+    un tiempo. En ese caso veremos que el símbolo **\>** no aparece.
+    Puede detenerse un cálculo con **STOP**.
+
+ 
+
+## Cuatro símbolos básicos: \# \<- ? c
+
+``` r
+# El símbolo # desactiva el espacio a su derecha.
+# Es útil para poner aclaraciones en nuestras rutinas.
+
+# Asignar crea objetos.
+# Puede usarse = en su reemplazo o -> para asignar el nombre al final.
+# Para unificar el estilo de todas las rutinas aquí sólo usaré <-
+n <- 15  
+n   # escribir el nombre de un objeto es "invocarlo"
+
+# al usar de nuevo el mismo nombre el objeto anterior se pierde ("pisarlo")
+n <- 46 + 12                 
+n
+
+# Obtener ayudas, el símbolo ?
+# si tenemos dudas sobre el funcionamiento de una función
+? lm
+
+# Si desconocemos el nombre de una función para realizar determinada
+# tarea, puede realizarse una búsqueda con ?? (sólo en los paquetes instalados)
+?? "linear models"
+
+# crear vectores. La función concatenar c
+# los caracteres categóricos se ingresan con comillas
+vector <- c(1, 2, 3, 4)
+vector <- c("a", "b", "c", "d") 
+```
+
+ 
+
+## Funciones básicas: creación de vectores, secuencias y matrices
+
+Como regla general las funciones siempre deben escribirse acompañadas de
+paréntesis, que contienen los elementos sobre los cuales la función
+actuará. Un ejemplo de función es c, que simplemente concatena objetos.
+Funciones más complejas apelan a diferentes *argumentos* a los cuales
+hay que asignarles un valor y se encuentran separados por comas (los
+espacios vacíos no tienen importancia).
+
+``` r
+# vectores de repetición. 
+# esta función argumentos, separados por una coma
+xx <- rep(x = "A", times = 50) 
+xx
+
+# si no se aclaran los argumentos, R asume su valor posicional
+xx <- rep("A", 50)
+xx
+
+# secuencias 
+seq1 <- seq(from = 0, to = 0.99, by = 0.02) # argumentos explícitos
+seq1
+
+# combinando vectores de a pares: cbind y rbind
+az <- cbind(seq1, xx)
+az
+
+za <- rbind(c(1:25), rnorm(25)) 
+za
+
+# construyendo una matriz: matrix()
+matriz1 <- matrix(c(1:20), 4, 5) # (vector a usar, filas, columnas) 
+matriz1
+```
+
+ 
+
+## Preparación e ingreso de datos
+
+Los datos pueden prepararse con cualquier software para planillas de
+datos como Excel o LibreOffice Calc. Se recomienda:  
+\- Que los nombres de las columnas no tengan espacios ni comiencen con
+números.  
+\- Evitar los símbolos extraños como %, &, ^, \~, ñ, etc.  
+\- Utilizar nombres cortos.  
+\- Los datos faltantes no deben dejarse en blanco, sino señalarse con
+NA.  
+\- Utilizar un formato ***tidy*** es decir donde \*cada columna es una
+variable y cada fila es una observación.
+
+Una vez lista la planilla se recomienda guardarla en formato .txt o .csv
+(si bien R admite otros formatos). Pueden guardarse en cualquier carpeta
+del equipo. Si utilizamos R Studio y guardamos los sets de datos en la
+misma carpeta que la rutina, el programa determinará esa carpeta como el
+directorio de trabajo de forma automática, por lo que no es necesario
+escribir la ruta completa al archivo. También puede evitarse escribir la
+ruta si al abrir R seleccionamos la carpeta que donde los archivos están
+guardados con la opción Session - Set Working Directory, o usando la
+función *setwd* (para examinar cual es la carpeta en uso, utilizar
+*getwd*). Esta opción es muy útil si vamos a abrir varios archivos de
+datos guardados en el mismo directorio. Finalmente, puede abrirse una
+ventana de búsqueda para seleccionar el archivo con la opción
+*file.choose()*.
+
+> Desde R 4.0.0 las variables categóricas ya no son reconocidas como
+> factores al importar un set de datos en R. Así que deben ser
+> convertidas una por una con *as.factor()* cuando sea necesario o con
+> la opción stringsAsFactors = TRUE dentro de *read.table* o de
+> *read.csv*.
+
+``` r
+# la función read.table
+# opción 1 con ruta completa (notar orientación de las barras /)
+# en este caso asumimos que se encuentra en el directorio RD
+datos <- read.table("C:/RD/datos/peces1.txt", header=TRUE, stringsAsFactors=T)
+
+# opción 2 seleccionando el directorio en uso previamente desde "Archivo"
+# o con setwd
+setwd("C:/RD/") ## "C:/RD/" es un ejemplo...
+datos <- read.table("peces1.txt", header=TRUE, stringsAsFactors=TRUE)
+
+# opción 3 Abre una ventana de búsqueda 
+# desventaja: requiere que el humano trabaje!
+datos <- read.table(file.choose(), header=TRUE, stringsAsFactors = TRUE)
+
+# opción 4 la función read.csv
+datos <- read.csv("C:/RD/peces1.csv", header=TRUE, stringsAsFactors = TRUE)
+
+# una forma práctica de ver si los datos cargaron como se espera es
+# ver solo las primeras filas es con head() 
+# o echar un vistazo a la estructura de los datos con str() o summary()
+head(datos)
+str(datos)
+summary(datos)
+
+# otras maneras de tener información básica
+nrow(datos)     # número de filas
+ncol(datos)     # número de columnas
+names(datos)    # nombre de las columnas
+```
+
+ 
+
+## Indexación
+
+Estas operaciones se realizan para extraer de un objeto la parte que nos
+interesa, por ejemplo una columna con una variable de un marco de datos.
+
+``` r
+# los objetos tienen diferentes dimensiones:
+# 1: vectores
+# 2: matrices y data.frames (filas y columnas)
+# 3: arrays
+# los corchetes sirven para identificar un elemento según su nombre o posición
+
+A <- c(1, 2, 9, 67, 8)
+A[3] # tercer elemento
+
+datos[, 1]          # primer columna                         
+datos[, "grupo"]    # columna llamada grupo
+datos$grupo         # forma corta
+
+datos[, 1:3]        # varias columnas                   
+datos[, c("grupo", "largo.a")]
+
+datos[2, ]          # filas                     
+datos[2, 3]         # elementos
+
+# indexando lógicamente con condiciones
+datos[-2, 2]        # exclusión de una fila
+datos[datos$largo.a > 15, ]
+datos[datos$largo.a > 15 & datos$grupo == "A", ]
+```
+
+ 
+
+## Subdivisión de conjuntos de datos.
+
+Para esta sección es clave conocer los **símbolos lógicos**: - ==
+(igual)  
+\- \!= (distinto)  
+\- \> (mayor)  
+\- \< (menor)  
+\- \>= (mayor o igual)  
+\- \<= (menor o igual)  
+\- & y  
+\- | o  
+\- %in% en c(lista de posibles valores…)
+
+``` r
+# Subdivisión de un conjunto de datos
+dat1 <- subset(datos, datos$grupo == "A")
+dat1
+
+dat2 <- subset(datos, datos$grupo == "A" & datos$trat == 2)
+dat2
+
+# Crear una lista de bases de datos
+ldat <- split(datos, f = datos$grupo) 
+ldat
+ldat[["B"]] # indexacion d listas
+```
+
+ 
+
+## Modificación.
+
+Conocer cómo indezar y subdividir una parte de un objeto y luego aplicar
+transformaciones u obtener información.
+
+``` r
+# reemplazar (al usar el mismo nombre) una variable numérica por un factor
+datos$trat
+datos$trat <- as.factor(datos$trat) 
+datos$trat    # notar la lista de niveles del factor
+
+# crear una nueva columna en una base de datos ya existentes
+# (utilizo un nombre nuevo)
+datos$pob <- c(rep("pob1", 15), rep("pob2", 15))
+
+datos$log.largo.a <- log(datos$largo.a)
+
+head(datos)
+
+# crear una nueva columna uniendo clasificadores
+datos$clave <- paste(datos$pob, datos$trat, sep = ".")
+head(datos)
+
+# Usando factor para arreglos más complicados
+datos$pais <- factor(datos$pob, levels = c("pob2", "pob1"), 
+                     labels = c("Bolivia", "Chile"))
+head(datos)
+```
+
+ 
+
+## Funciones estadísticas básicas y de resumen.
+
+En general si cualquiera de ellas se aplica sobre datos que contienen NA
+(dato ausente) el resultado será NA también, por lo cual hay indicarle a
+la función que los elimine. Una alternativa es eliminar previamente
+todas las filas con datos faltantes usando la función *na.omit*.
+
+``` r
+# media
+M <- mean(datos$largo.a, na.rm = TRUE)
+M
+
+# desvío estándar
+S <- sd(datos$largo.a, na.rm = TRUE)
+S
+
+# varianza
+V <- var(datos$largo.a, na.rm = TRUE)
+V
+
+# sobre un conjunto de datos, se obtiene una matriz de varianza-covarianza
+VC <- var(datos[,c(3,4)], na.rm = TRUE)
+VC
+
+# de forma parecida, puede obtenerse una matriz de correlación
+CO <- cor(datos[, c(3, 4)], use="complete.obs")  #complete.obs elimina NA
+CO
+
+# en cambio, para realizar un test de correlación
+cor.test(datos$largo.a, datos$largo.b, method = "pearson")
+
+# funciones que crean resúmenes aplicados a subconjutos son 
+# tapply (de la serie apply) y aggregate, con una estructura más complicada
+
+SG <- tapply(datos$largo.a, datos$grupo, mean, na.rm = TRUE)
+SG 
+
+MG <- aggregate(datos$largo.a, by = list(datos$grupo), FUN = mean, na.rm = T)
+MG
+```
+
+ 
+
+## Indexación, subdivisión y modificación en *tidyverse.*
+
+Es cada vez más frecuente encontrar operaciones básicas re R realizadas
+a través del paquete *dplyr*. Si bien mi objetivo es enseñar a utilizar
+*r-base* incorporo esta sección y la siguiente para mostrar
+compartivamente estos diferentes dialectos de un mismo lenguaje.
+
+``` r
+library(dplyr)
+# Subdivisión o *filtrado*
+dat1 <- filter(datos, grupo == "A")
+dat2 <- filter(datos, grupo == "A", largo.b > 100)
+
+# Selección por colunmas *select*
+dat3 <- select(datos, grupo, largo.a)
+
+# select tiene funciones de ayuda. Por ejemplo, seleccionar todas las 
+# columnas que comiencen con "larg". Ver ?select para más ejemplos.
+dat4 <- select(datos, starts_with("larg"))
+
+# Modificación de columnas *mutate*
+# puede crearse un nuevo set de datos como aquí o modificarse el original
+dat5 <- mutate(datos,
+  prop = largo.b / largo.a, # columna nueva
+  log.largo = log(largo.a)) # columna nueva
+```
+
+ 
+
+## Haciendo más eficiente la programación: esto es una pipa
+
+![](pipa.png)  
+En 2014 Stefan Bache introdujo el operador pipa `%>%` en el paquete
+[*magrittr*](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+que “canaliza” un objeto hacia una función (*pipe* puede también
+traducirse como un tubo o cañería). Su uso principal es expresar una
+secuencia de múltiples operaciones, evitando la creación de objetos
+intermedios.  
+A partir de R.4.1.0, el lengujae básico incorpora una pipa nativa
+(*native pipe*) `|>` con funciones similares pero una sintaxis
+ligeramente diferente a la de la pipa del paquete *magrittr*.  
+Veamos un ejemplo sencillo donde:
+
+  - Leemos un set de dados  
+  - Aplicamos un subset  
+  - Calculamos la media  
+  - Repitamos esas operaciones en *dplyr*
+
+<!-- end list -->
+
+``` r
+library(magrittr)
+library(dplyr)
+
+# Usando R base, con creación de objetos intermedios
+datos <- read.table("peces1.txt", header=TRUE)
+largo.a_A <- subset(datos$largo.a, datos$grupo == "A")
+M <- mean(largo.a_A)
+M
+
+# Usando R base, evitando los objetos intermedios
+# Notar cómo se debe leer de "adentro" hacia "afuera".
+M <- mean(subset(datos$largo.a, datos$grupo == "A"))
+M
+
+# Usando la pipa de magrittr %>%
+# Seguimos mejor la lógica de un "lenguaje natural"
+datos$largo.a %>%
+subset(datos$grupo == "A") %>%
+mean() -> M  # en magrittr los paréntesis que acompañan mean son opcionales
+M
+
+# Usando 'pipas nativas' |>
+datos$largo.a |>
+subset(datos$grupo == "A") |>
+mean() -> M
+M
+
+# Usando dplyr y pipa de magrittr
+filter(datos, grupo == "A") %>%
+select(largo.a) %>%
+summarize(mean(largo.a)) -> M
+M
+```
+
+ 
+
+## Una nota sobre *tidyverse*
+
+Los 87 paquetes de *tidyverse* forman una colección especialmente
+dedicada a la ciencia de datos, introducida por Hadley Wickham. Con la
+excepción de *ggplot2*, en este curso no profundiaremos en estos
+paquetes aunque ocasionalmente introduciré ejemplos. R base ofrece pocas
+herramientas que deben combinarse para resolver un problema. Por el
+contrario, las funciones de *tidyverse* se cuentan por cientos, son
+sumamente eficaces (y en muchos casos resuelven problemas que requieren
+bastante programación en R), pero limitan la creatividad, uno de los
+puntos que quiero enfatizar. *tidyverse* está sujeto a rápidos cambios,
+mientras que *R Base* es altamente conservado, permitiendo la ejecución
+de rutinas incluso varios años después de publicadas. Personalmente, lo
+encuentro esto último más útil para asegurar una investigación
+reproducible. Finalmente, y con independencia de mi opinión, suele ser
+más fácil apreciar la utilidad de *tidyverse* después de conocer *R
+Base*.
+
+> Un excelente lugar para introducirce a *tidyverse* es [**R para
+> ciencia de datos**](https://r4ds.hadley.nz/). También, para comparar
+> tres de las sintaxis en R (con signo $, el modo fórmula y *tidy*) se
+> puede consultar esta
+> [cheatshet.](https://raw.githubusercontent.com/rstudio/cheatsheets/master/syntax.pdf)
+
+![](tvsb.png)
+
+ 
+
+## Ejercicios
+
+1.  Construya (o utilice si ya tiene disponible) una base de datos donde
+    se encuentren variables categóricas, variables continuas y valores
+    faltantes.
+
+<!-- end list -->
+
+  - Importe la base de datos en R.  
+  - Asegúrese de que al menos una variable categórica sea un factor.  
+  - Obtenga los valores medios para cada nivel de esa factor de una
+    variable continua con *tapply*.

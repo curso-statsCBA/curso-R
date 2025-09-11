@@ -78,14 +78,14 @@ class: center, middle
 
 ### Introducción a los Modelos Lineales
 
-![](ijalm.png)
+![](img/ijalm.png)
 
 **Es Solo Un Modelo Lineal! (ESUML!)**
 
 ---
 ### Introducción a los Modelos Lineales
 
-![](clasific.png)
+![](img/clasific.png)
 
 ---
 background-color: #FFEEBD
@@ -299,7 +299,7 @@ $$Y_{ij} = \mu + \alpha_{i} + \epsilon_{ij}$$
 ---
 ### (Pequeña nota histórica)
 
-![](iris.jpeg)
+![](img/iris.jpeg)
 *Iris* fue publicado por primera vez en **1936** por Ronald Fisher en el *Annals of Eugenics*. 
 Proponía una metodología para describir "rasgos deseables" en apoyo al programa eugenésico.   
 

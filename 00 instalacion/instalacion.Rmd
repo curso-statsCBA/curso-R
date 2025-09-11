@@ -1,6 +1,6 @@
 ---
 title: "Presentación del curso e instalación de R"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -32,6 +32,7 @@ procedimientos que se siguieron, permitiendo repetir los análisis después.
 Para finalizar, y tal vez lo más importante, el aprendizaje de R tiene un gran 
 componente lúdico, fomenta la capacidad de análisis y la creatividad.   
 
+&nbsp;
 
 ## ¿Qué es una rutina, qué es un código?
 
@@ -45,6 +46,8 @@ resultados de un estudio puedan ser reproducidos.
 2. El software científico (como puede ser un paquete de R o Python) es diseñado 
 para tener múltiples usos. Puede ser el producto mismo de una investigación.   
 
+&nbsp;
+
 ## Sobre las rutinas de este curso
 
 En este curso las rutinas aparecen incrustadas en la página web y pueden reconocerse por 
@@ -54,6 +57,8 @@ para ejecutar la rutinas, pero resaltando siempre su naturaleza de lenguaje,
 independiente del soporte donde es ejecutado. Todo el material de este curso, 
 incluyendo versiones anteriores en formato virtual, está disponibles en forma 
 abierta en https://santiagombv.github.io/teaching/.  
+
+&nbsp;
 
 ## Sobre este curso   
 
@@ -72,7 +77,7 @@ Cada año por medio se dicta un curso que es la continuación de éste, e involu
 estadísticos avanzados como lineales generalizados, aditivos, mixtos, métodos de 
 clasificación y de aprendizaje automático no supervisado.   
 
---- 
+&nbsp;
 
 ## **Instalación de R y de sus paquetes en Windows**
 
@@ -103,7 +108,6 @@ de instalación.
 
 Una vez instalado, descargar las extensiones para utilizar R: R REditorSupport y R Syntax (recomendada).  
 
-
 ### Instalación de paquetes
 
 Los paquetes de R son colecciones de funciones para un fin determinado, asociadas a su ayuda, un manual 
@@ -117,14 +121,14 @@ Seleccionar un paquete de la lista desplegable.
 
 En ambos casos, puede hacerse mediante instrucciones en la consola:  
 
-```R
+```r
 install.packages("nombre_del_paquete")
 ```
 
 Los paquetes mismos deben actualizarse regularmente, particualrmente junto a los cambios en las versiones 
 de R (recomiendo hacerlo al menos dos veces al año). Para esto, ejecute y posteriormente siga las instrucciones.
 
-```R
+```r
 update.packages()
 ```
 
@@ -133,11 +137,10 @@ instalación de R, por lo que deberá instalarlos manualmente: *arm*, *car*, *ca
 *emmeans*, *glmnet*, *GGally*, *ggplot2*, *lattice*, *leaps*, *magrittr*, *MuMIn*, *patchwork*, *performance*, 
 *rgl*, *rmarkdown*, *sciplot*, *viridis* y todas las dependencias necesarias.  
 
-
 ### Actualización de R. 
 La manera más práctica es el paquete *installr* y ejecutando
 
-```R
+```r
 install.packages("installr")
 library(installr)
 updateR() #seguir las instrucciones que aparezcan
@@ -150,7 +153,7 @@ Dirigirse a `Help - check for updates`.
 Si tiene una versión de R < 4.0.0 podría tener problemas en ejecutar las rutinas de este curso. 
 En caso de tener problemas con la actualización, desinstalar todas las versiones anteriores.
 
---- 
+&nbsp;
 
 ## **Instalación de R y de sus paquetes en Ubuntu**
 
@@ -215,7 +218,7 @@ install.packages("nombre_del_paquete")
 
 Los paquetes mismos deben actualizarse regularmente, particualrmente junto a los cambios en las versiones de R. Para esto, ejecute y posteriormente siga las instrucciones.
 
-```R
+```r
 update.packages()
 ```
 

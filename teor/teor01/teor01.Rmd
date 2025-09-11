@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE,         # FALSE: los bloques de código NO s
 ```
 
 ## ¿Por qué R?  
-<img src="cactus.png"
+<img src="img/cactus.png"
 width="90%"
 alt=""/>
 
@@ -33,7 +33,7 @@ alt=""/>
 ---
 class: center, middle
 
-<img src="f07libre.png"
+<img src="img/f07libre.png"
 width="80%"
 height="80%"
 alt=""/>
@@ -41,7 +41,7 @@ alt=""/>
 ---
 class: center, middle
 
-<img src="creadores.jpg" 
+<img src="img/creadores.jpg" 
 width="80%"
 alt=""/>
 
@@ -67,7 +67,7 @@ class: center, middle
 
 ### La comunidad
 
-<img src="r-users.png" width="90%"
+<img src="img/r-users.png" width="90%"
 alt=""/>
 
 R users groups, R-Ladies
@@ -152,7 +152,7 @@ class: center, middle
 
 ### Publicar la rutina de análisis
 
-<img src="repos.png" width="90%"
+<img src="img/repos.png" width="90%"
 alt=""/>
 
 ---
@@ -174,13 +174,13 @@ Modificado de [Mislan et al. 2016](https://www.sciencedirect.com/science/article
 
 ### Publicar un paquete
 
-<img src="jss.png" 
+<img src="img/jss.png" 
 width="75%"
 alt=""/>
 
 --- 
 
-<img src="mee.png" 
+<img src="img/mee.png" 
 width="90%"
 alt=""/>
 
@@ -188,7 +188,7 @@ alt=""/>
 
 ### Dónde encontrar un paquete
 
-<img src="f05repos.png" 
+<img src="img/f05repos.png" 
 height="90%"
 alt=""/>
 
@@ -196,7 +196,7 @@ alt=""/>
 
 ### CRAN 
 
-<img src="paquetes.png" width="90%"
+<img src="img/paquetes.png" width="90%"
 alt=""/>
 
 ---
@@ -205,18 +205,18 @@ alt=""/>
 Interfaces Gráficas de Usuario (GUI)     
 Entorno de Desarrollo Integrado (IDE)  
 
-<img src="otros_ide.png" 
+<img src="img/otros_ide.png" 
 height="75%"
 alt=""/>
 
 ---
 class: center, middle
 
-<img src="rstudio.png" 
+<img src="img/rstudio.png" 
 width="90%"
 alt=""/>
 
-<img src="vscode.jpeg" 
+<img src="img/vscode.jpeg" 
 width="90%"
 alt=""/>
 

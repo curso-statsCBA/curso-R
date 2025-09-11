@@ -13,12 +13,12 @@ output:
 ---
 class: center, middle
 ### Randomización y Modelos Nulos
-![](casino.jpg)
+![](img/casino.jpg)
 
 ---
 class: center, middle
 
-<img src="ulamycartas.png"
+<img src="img/ulamycartas.png"
 width="70%"
 alt=""/>
 
@@ -92,7 +92,7 @@ análisis aporta alguna evidencia de que el mecanismo puesto a prueba está real
 
 ### Examinando desplazamiento de caracteres en *Burmeistera*.
 
-![](bat.png)
+![](img/bat.png)
 
 Muchhala N, Potts M. 2007. Proc. Roy. Soc. Lond. B 274: 2731-2737.
 
@@ -100,7 +100,7 @@ Muchhala N, Potts M. 2007. Proc. Roy. Soc. Lond. B 274: 2731-2737.
 
 ### Examinando desplazamiento de caracteres en *Burmeistera*.
 
-![](bat.png)
+![](img/bat.png)
 
 > Si dos especies evitan la competencia colocando el polen en sitios distintos del murciélago 
 tendrán mayor éxito. Esperamos que la divergencia local en la exserción debe ser más grande 
@@ -110,7 +110,7 @@ que la esperada por azar.
 
 ### Examinando desplazamiento de caracteres en *Burmeistera*.
 
-![](tabla.png)
+![](img/tabla.png)
 
 **ESTADISTICO ELEGIDO:** Media de las diferencias locales en la exserción.
 La media observada de las 32 diferencias es de **6.03 mm**

@@ -16,7 +16,7 @@ background-color: #c39acd
 
 ### Colinealidad, selección de modelos y regularización
 
-![](box.jpg)
+![](img/box.jpg)
 
 ---
 ### ¿Qué significan las diferentes maneras de utilizar un modelo?
@@ -364,7 +364,7 @@ interaction.plot(dat$modelo, dat$method, log(dat$RSS),
 
 ### MSE para datos de prueba y entrenamiento
 
-![](training&test.png)
+![](img/training&test.png)
 
 ---
 
@@ -379,7 +379,7 @@ extremadamente complicada), utilizando un modelo sencillo.
 
 ### Varianza y Sesgo
 
-![](variance&bias.png)
+![](img/variance&bias.png)
 
 ---
 class: center, middle
@@ -405,7 +405,7 @@ background-color: #c39acd
 
 ## Ahora si. Selección de modelos
 
-![](razor.jpg)
+![](img/razor.jpg)
 
 ---
 
@@ -449,7 +449,7 @@ dentro de determinado rango de criterios.
 ---
 
 ### ¿Por qué usamos criterios y no significancia?
-![](comic1.png)
+![](img/comic1.png)
 
 https://xkcd.com/882/
 

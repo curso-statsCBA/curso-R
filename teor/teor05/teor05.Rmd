@@ -15,7 +15,7 @@ class: center, middle
 background-color: #fbbbbf
 ### Bootstrap
 
-<img src="boot.png"
+<img src="img/boot.png"
 width="60%"
 alt=""/>
 
@@ -25,7 +25,7 @@ alt=""/>
 * Muestreo aleatorio original.   
 * Muestreo aleatorio con reposición de igual n.   
 
-![](muestreo.svg)
+![](img/muestreo.svg)
 
 ---
 class: center, middle
@@ -43,12 +43,12 @@ Si calculamos un estadístico $t’$ en cada muestra-bootstrap, su distribución
 alrededor del $t$ en la muestra original es análoga a la distribución de $t$ 
 alrededor del parámetro poblacional $\theta$.   
 
-![](muestreo2.svg)
+![](img/muestreo2.svg)
 
 ---
 
 ### ¿Para qué se usan estas nuevas muestras?
-![](remuestreo.svg)
+![](img/remuestreo.svg)
 
 ---
 background-color: #fbbbbf

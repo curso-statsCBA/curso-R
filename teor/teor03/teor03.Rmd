@@ -53,7 +53,7 @@ explicar un patrón?
 
 $$Y_{i} = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}X_{2i} + \beta_{3}X_{3i} +\epsilon_{i}$$
 
-![](efectos.png)
+![](img/efectos.png)
 
 ---
 ### interpretación
@@ -70,7 +70,7 @@ efectos directos.
 
 ### Interacciones
 
-![](superficies.png)
+![](img/superficies.png)
 
 ---
 
@@ -294,6 +294,6 @@ X:Zc       -0.7103    0.3622    -1.961    0.057013 .
 
 ### Modelos lineales con interacción
 
-![](interac.png)
+![](img/interac.png)
 
 ---

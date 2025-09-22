@@ -1,4 +1,4 @@
-1[](images/grupete2025.jpg)
+![](images/grupete2025.jpg)
 
 ### INTRODUCCIÓN AL LENGUAJE R. MODELOS LINEALES Y FUNDAMENTOS DE PROGRAMACIÓN
 

@@ -1,3 +1,5 @@
+1[](images/grupete2025.jpg)
+
 ### INTRODUCCIÓN AL LENGUAJE R. MODELOS LINEALES Y FUNDAMENTOS DE PROGRAMACIÓN
 
 #### Dr. Santiago Benitez-Vieyra. 
